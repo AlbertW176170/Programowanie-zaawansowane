@@ -213,12 +213,12 @@ Odpowiada za:
 
 ## Autorzy projektu
 
-| Rola   | Odpowiedzialność                      |
-| ------ | ------------------------------------- |
-| Albert | Modele danych i konfiguracja Maven    |
-| Michał | Implementacja serwera i współbieżność |
-| Adam   | Implementacja klienta i Stream API    |
-| Wiktor | Testy JUnit 5 oraz dokumentacja       |
+| Rola          | Odpowiedzialność                      |
+|---------------| ------------------------------------- |
+| Albert 176170 | Modele danych i konfiguracja Maven    |
+| Michał 168241 | Implementacja serwera i współbieżność |
+| Adam   176607 | Implementacja klienta i Stream API    |
+| Wiktor 168254 | Testy JUnit 5 oraz dokumentacja       |
 
 ---
 
@@ -244,3 +244,16 @@ Podczas realizacji projektu wykorzystywano wsparcie narzędzi Generative AI w za
 * przygotowania testów JUnit 5.
 
 AI pełniło funkcję wspomagającą proces projektowania i implementacji, natomiast końcowa weryfikacja poprawności rozwiązania została przeprowadzona przez członków zespołu.
+
+Prompty:  
+(Albert)  
+Napisz trzy klasy w Javie reprezentujące modele danych: Kot (imie, wiek), Pies (rasa, waga) oraz Samochod.
+
+(Michał)  
+Jak zaimplementować bezpieczny limit połączeń klientów (MAX_CLIENTS = 3) w wielowątkowym ServerSocket w Javie? Chcę, aby w przypadku próby połączenia 4. klienta, serwer nie blokował swojego głównego wątku accept(), lecz od razu wysyłał klientowi informację tekstową 'REFUSED' przez ObjectOutputStream, zamykał to gniazdo i kontynuował działanie dla pierwszych 3 klientów. Użyj puli wątków.
+
+(Adam)  
+Napisz kod klienta TCP/IP w Javie, który połączy się z serwerem, wyśle swoje ID jako int, odczyta status połączenia jako UTF, a następnie dla podanej tablicy nazw klas (np. Kot, Pies) wyśle zapytanie do serwera, odbierze obiekt typu List<?> i przetworzy go za pomocą Stream API. Dodatkowo dodaj metodę rzutującą odebrane obiekty, która celowo rzuca i loguje ClassCastException, jeśli klasa obiektu nie zgadza się z oczekiwaną.
+
+(Wiktor)  
+Stwórz kompletną klasę testową ProjectApplication Test w JUnit 5. Musi zawierać 3 poziomy testów: 1) Testy jednostkowe sprawdzające stan pamięci serwera i poprawne działanie equals/hashCode w modelach, 2) Testy integracyjne sprawdzające poprawność zapisu i odczytu kolekcji obiektów przez ByteArrayOutputStream, 3) Pełny test akceptacyjny E2E, który uruchamia serwer w osobnym wątku tła, podpina 3 poprawnych klientów, sprawdza czy 4. klient otrzyma status REFUSED i weryfikuje poprawne przechwycenie ClassCastException.
